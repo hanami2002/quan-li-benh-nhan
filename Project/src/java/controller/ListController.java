@@ -6,18 +6,20 @@
 package controller;
 
 import dao.DiagnosticDAO;
+import entity.Diagnostic;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  *
  * @author Hanami
  */
-public class AddDiagnostic extends HttpServlet {
+public class ListController extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -29,25 +31,10 @@ public class AddDiagnostic extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String user=request.getParameter("pcreate");
-        String pid= request.getParameter("pid");
-        String symptom= request.getParameter("symptom");
-        String diagnosis= request.getParameter("diagnosis");
-        String medication= request.getParameter("medication");
-        String admitted= request.getParameter("admitted");
-        int check;
-        if(admitted==null){
-            check=0;
-        }else{
-            check=1;
-        }
-                
-        PrintWriter out= response.getWriter();
-     //  out.print(pid+" "+symptom+" "+diagnosis+" "+medication+" "+check+" "+user);
-     
-        DiagnosticDAO dAO= new DiagnosticDAO();
-        dAO.addDiagnostic(Integer.parseInt(pid), symptom, diagnosis, medication,check, user);
-        response.sendRedirect("list");
+        DiagnosticDAO diagnosticDAO= new DiagnosticDAO();
+        List<Diagnostic> listD=diagnosticDAO.getListDiagnostic();
+        request.setAttribute("listD", listD);
+        request.getRequestDispatcher("list.jsp").forward(request, response);
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

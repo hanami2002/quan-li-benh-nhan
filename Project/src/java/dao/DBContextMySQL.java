@@ -34,7 +34,6 @@ public class DBContextMySQL {
             connection = DriverManager.getConnection(url, user, pass);
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(DBContextMySQL.class.getName()).log(Level.SEVERE, null, ex);
-        }
-         
+        }         
     }
 }

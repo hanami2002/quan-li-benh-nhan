@@ -73,6 +73,18 @@ public class PaitnetDAO extends DBContextMySQL {
         } catch (Exception e) {
         }
     }
+    public String getNameByDid(int did){
+        String sql="SELECT * FROM paitnet where pid=(SELECT pid FROM prj_qg.diagnostic where did=?)";
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setInt(1, did);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getString(2);
+            }
+        } catch (Exception e) {
+        }return null;
+    }
     public void updatePaitnet(String name,String address,String dob,String contact,String createBy,int pid){
         String sql="UPDATE paitnet SET `name` = ?,`address` =?,`dob` = ?,`contact` = ?,`createBy` = ? WHERE `pid` = ?;";
         try {
@@ -89,10 +101,4 @@ public class PaitnetDAO extends DBContextMySQL {
     }
 
 }
- class test{
-     public static void main(String[] args) {
-         PaitnetDAO pdao = new PaitnetDAO();
-         pdao.addPaitnet("a", "Ha ", "2023-05-04", "0123 ", "user1");
-         System.out.println(pdao.getListPaitnet());
-     }
- }
+

@@ -103,5 +103,10 @@ public class Diagnostic {
         return gson.toJson(this);
     }
 
+    @Override
+    public String toString() {
+        return "Diagnostic{" + "did=" + did + ", pid=" + pid + ", symptom=" + symptom + ", diagnosis=" + diagnosis + ", medicines=" + medicines + ", wardRequired=" + wardRequired + ", createBy=" + createBy + ", createAt=" + createAt + '}';
+    }
+
 
 }

@@ -2,12 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/FPTShop/OneDrive/Documents/NetBeansProjects/Project/src/java/dao/PaitnetDAO.java</file>
-            <file>file:/C:/Users/FPTShop/OneDrive/Documents/NetBeansProjects/Project/src/java/controller/DeletePaitnent.java</file>
-            <file>file:/C:/Users/FPTShop/OneDrive/Documents/NetBeansProjects/Project/src/java/controller/AddPaitnet.java</file>
-            <file>file:/C:/Users/FPTShop/OneDrive/Documents/NetBeansProjects/Project/src/java/entity/Paitnet.java</file>
-            <file>file:/C:/Users/FPTShop/OneDrive/Documents/NetBeansProjects/Project/web/home.jsp</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

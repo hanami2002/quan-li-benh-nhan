@@ -14,6 +14,7 @@
         <c:if test="${sessionScope.user==null}">
             <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
         </c:if>
+        <jsp:useBean id="dateUtils" scope="page" class="utils.DateExp" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <script >
@@ -134,6 +135,16 @@
                                 Lịch sử bệnh nhân
                             </button></li>
                         <li><a href="#">Thông tin bệnh viện</a></li>
+                        <li><a href="list">
+                                <button type="button" class="btn btn-primary" >
+                                    Lịch sử chuẩn đoán
+                                </button></a>
+                        </li>
+                        <li>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updateInformation">
+                                Thay đổi thông tin
+                            </button>
+                        </li>
                         <li>
                             <a href="logout"><button type="button" class="btn btn-primary" >
                                     Đăng xuất
@@ -148,7 +159,7 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>Mã số</th>
+                                <th style="width:10rem">Mã Bệnh Nhân</th>
                                 <th>Tên</th>
                                 <th>Địa chỉ</th>
                                 <th>Ngày sinh</th>
@@ -163,7 +174,7 @@
                                     <td>${p.getId()}</td>
                                     <td>${p.getName()}</td>
                                     <td>${p.getAddress()}</td>
-                                    <td>${p.getDob()}</td>
+                                    <td>${dateUtils.convertDate(p.getDob())}</td>
                                     <td>${p.getContact()}</td>
                                     <td>
                                         <a onclick="deletepaitnet('${p.getId()}')" href="#"><button type="button" class="btn btn-primary" >
@@ -176,7 +187,6 @@
                                     </td>
                                 </tr>       
                             </c:forEach>
-
                         </tbody>
                     </table>
                 </div>
@@ -236,8 +246,8 @@
                         </div>
                         <form action="addDiagnostic" method="post">
                             <div class="modal-body">
-                                <input type="text" name="pcreate" value="${sessionScope.user.getUsername()}" >
-                                <input type="text" name="did" class="form-control" id="inputId"  >
+                                <input hidden type="text" name="pcreate" value="${sessionScope.user.getUsername()}" >
+
                                 <div class="form-group">
                                     <label for="inputPatient">Mã số bệnh nhân:</label>
                                     <input type="text" name="pid" class="form-control " id="inputPatient" placeholder="Nhập mã số bệnh nhân">
@@ -267,7 +277,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                <button type="button" class="btn btn-primary">Thêm</button>
+                                <button type="submit" class="btn btn-primary">Thêm</button>
                             </div>
                         </form>
                     </div>
@@ -322,6 +332,39 @@
                     </div>
                 </div>
             </div>
+            <!-- Modal -->
+            <div class="modal fade" id="updateInformation" tabindex="-1" role="dialog" aria-labelledby="updateInformationLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="updateInformationLabel">Thay đổi thông tin</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="displayName">Tên hiển thị:</label>
+                                    <input type="text" class="form-control" id="displayName" placeholder="Nhập tên hiển thị">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Mật khẩu:</label>
+                                    <input type="password" class="form-control" id="password" placeholder="Nhập mật khẩu">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Nhập lại mật khẩu:</label>
+                                    <input type="password" class="form-control" id="re-password" placeholder="Nhập lại mật khẩu">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                            <button type="button" class="btn btn-primary" id="saveChangesBtn">Lưu thay đổi</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <footer>
                 <p>&copy; 2023 Bệnh viện XYZ. All rights reserved.</p>
             </footer>
@@ -343,6 +386,7 @@
                                                     $("button[value='Edit']").show();
                                                     $("button[value='Add']").hide();
                                                     const patient = $(this).data("patient");
+                                                    console.log(patient);
                                                     // Lấy thông tin bệnh nhân từ thuộc tính data-patient
                                                     // var patient = JSON.parse($(this).data("patient"));
                                                     // Đẩy thông tin bệnh nhân vào modal "Thêm bệnh nhân"
@@ -352,8 +396,7 @@
                                                     $("#inputAddress").val(patient.address);
                                                     $("#inputPhone").val(patient.contact);
                                                 });
-                                            }
-                                            );
+                                            });
                                             const month = {
                                                 "Jan": 1,
                                                 "Feb": 2,
@@ -367,13 +410,13 @@
                                                 "Oct": 10,
                                                 "Nov": 11,
                                                 "Dec": 12
-                                            }
+                                            };
                                             const dateFormat = (date = "Jan 1, 2020") => {
                                                 date = date.replace(",", "").split(" ")
-//                    return `${date[2]}/${month[date[0]]}/${date[1]}`;
+
                                                 return date[2] + "-" + (Number(month[date[0]]) / 10 >= 1 ? month[date[0]] : ("0" + month[date[0]])) + "-" + (Number(date[1]) / 10 >= 1 ? date[1] : ("0" + date[1]));
-                                            }
-                                            console.log(dateFormat("Dec 13, 2002"))
+                                            };
+                                            console.log(dateFormat("Dec 13, 2002"));
 
 
             </script>

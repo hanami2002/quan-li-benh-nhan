@@ -28,6 +28,14 @@
         <servlet-name>AddDiagnostic</servlet-name>
         <servlet-class>controller.AddDiagnostic</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListController</servlet-name>
+        <servlet-class>controller.ListController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchPaitnet</servlet-name>
+        <servlet-class>controller.SearchPaitnet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -55,6 +63,14 @@
     <servlet-mapping>
         <servlet-name>AddDiagnostic</servlet-name>
         <url-pattern>/addDiagnostic</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListController</servlet-name>
+        <url-pattern>/list</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchPaitnet</servlet-name>
+        <url-pattern>/search-paitnet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
