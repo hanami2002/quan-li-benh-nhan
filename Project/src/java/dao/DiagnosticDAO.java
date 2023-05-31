@@ -121,6 +121,6 @@ class p {
         DateExp dateExp = new DateExp();
         PaitnetDAO pdao = new PaitnetDAO();
         System.out.println(dAO.search("c", ""));
-        System.out.println(pdao.getNameByDid(1));
+        System.out.println(pdao.countPaitnet());
     }
 }

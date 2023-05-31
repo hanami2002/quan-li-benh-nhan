@@ -7,71 +7,120 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Login Form</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    </head>
-    <body>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<style>
+.cover {
+     width: 400px;
+    margin: auto;
+    margin-top: 10%;
+}
+.mastfoot {
+    padding-top: 0px;
+    text-align: center;
+    margin: auto;
+}
+</style>
 
-        <div class="container mt-5">
-            <div class="row justify-content-center">
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Login</h4>
-                        </div>
-                        <div class="card-body">
-                            <form action="login" method="post">
+</head>
+<body>
+<div class="cover-container">
+    <div class="masthead clearfix">
+        <div class="inner">
+            <h3 class="masthead-brand"></h3>
+            <ul class="nav masthead-nav">
+                <!--<li class="active"><a href="#">Home</a></li>
+                <li><a href="#">Features</a></li>
+                <li><a href="#">Contact</a></li>-->
+            </ul>
+        </div>
+    </div>
+    <div class="inner cover">
+        <div class="panel panel-default">
+            
+            <div class="panel-body">
+                <!-- tabs -->
+                <ul id="dTab" class="nav nav-tabs">
+                    <li class="active"><a href="#pane1" data-toggle="tab">Bác Sĩ</a></li>
+                    <li><a href="#pane2" data-toggle="tab">Bệnh Nhân</a></li>
+                    <!--<li><a href="#pane3" data-toggle="tab"></a></li>-->
+                </ul>
+                <div class="tab-content">
+                    <div id="pane1" class="tab-pane fade in active">
+                        <!-- Register Username -->
+                        <form action="login" method="POST">
                                 <div class="form-group">
-                                    <label for="username">Username:</label>
-                                    <input type="text" class="form-control" name="username" id="username" placeholder="Enter your username">
-                                </div>
-                                <div class="form-group">
-                                    <label for="password">Password:</label>
-                                    <input type="password" class="form-control" name="password" id="password" placeholder="Enter your password">
-                                </div>
-                                <div class="form-group">
-                                    <label for="message">${message}</label>
-                                    
-                                </div>
-                                <div class="form-group">
-                                    <div class="">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <button type="subbmit" id="myButton"  class="btn btn-primary">Login</button>
+                                <label for="exampleInputEmail1">Tên Đăng Nhập</label>
+                                <input name="username" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email" />
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Mật Khẩu</label>
+                                <input  name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+                            </div>
+                            <button type="submit" class="btn btn-primary">Đăng Nhập</button>
 
-                                                <button type="button" id="myButton" class="btn btn-primary">Register</button>
-                                            </div>
-                                            <div class="col-md-6 text-right">
-                                                <button type="button"id="myButton"  class="btn btn-primary">Forgot Password?</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+                            <button type="reset" class="btn btn-primary" id="forgetBtn2">Quên mật khẩu?</button>
+                        </form>
+                    </div>
+                    <div id="pane2" class="tab-pane fade">
+                        <!-- login -->
+                        <form  action="login" method="POST">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Tên Đăng Nhập</label>
+                                <input name="username" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email" />
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Mật Khẩu</label>
+                                <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+                            </div>
+                            <button type="submit" class="btn btn-primary">Đăng Nhập</button>
+
+                            <button type="reset" class="btn btn-primary" id="forgetBtn1">Quên mật khẩu?</button>
+                        </form>
+                        <!-- login-ends-->
+                    </div>
+                    <div id="pane3" class="tab-pane fade">
+                        <!-- password forget -->
+                        <form role="form" action="" method="POST">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email </label>
+                                <input type="email"  class="form-control" id="exampleInputEmail1" placeholder="Request a password reset. Enter your email" />
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Reset Password</button>
+                            <button type="reset" class="btn btn-primary" id="loginBtn">Login</button>
+                        </form>
+                        <!-- password forget -->
                     </div>
                 </div>
+                <!-- -->
             </div>
         </div>
+        
+    </div>
+</div>
+<script>
+$(document).ready(function () {
+    $("#forgetBtn1").click(function () {
+        $("#dTab li:eq(2) a").tab("show");
+        $(".tab-content div.active").removeClass("active in");
+        $(".tab-content").find("#pane3").addClass("active in");
+    });
+    $("#forgetBtn2").click(function () {
+        $("#dTab li:eq(2) a").tab("show");
+        $(".tab-content div.active").removeClass("active in");
+        $(".tab-content").find("#pane3").addClass("active in");
+    });
+     $("#loginBtn").click(function () {
+        $("#dTab li:eq(1) a").tab("show");
+        $(".tab-content div.active").removeClass("active in");
+        $(".tab-content").find("#pane2").addClass("active in");       
+    });    
+});
+</script>
 
-        <script>
-            var button = document.getElementById("myButton");
-
-            button.addEventListener("mouseover", function () {
-                button.style.backgroundColor = "blue";
-            });
-
-            button.addEventListener("mouseout", function () {
-                button.style.backgroundColor = ""; // Khôi phục màu nền gốc
-            });
-
-        </script>
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    </body>
+</body>
 </html>
-
-
