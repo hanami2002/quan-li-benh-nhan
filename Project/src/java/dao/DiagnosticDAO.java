@@ -37,16 +37,18 @@ public class DiagnosticDAO extends DBContextMySQL {
         return null;
     }
 
-    public Diagnostic getDiagnosticByPid(int pid) {
+    public List<Diagnostic> getDiagnosticByPid(int pid) {
         String sql = "SELECT * FROM prj_qg.diagnostic where pid=?";
         try {
             ps = connection.prepareStatement(sql);
             ps.setInt(1, pid);
             rs = ps.executeQuery();
+            List<Diagnostic> list= new ArrayList<>();
             while (rs.next()) {
-                return new Diagnostic(rs.getInt(1), rs.getInt(2), rs.getString(3),
-                        rs.getString(4), rs.getString(5), rs.getBoolean(6), rs.getString(7), rs.getDate(8));
+                list.add( new Diagnostic(rs.getInt(1), rs.getInt(2), rs.getString(3),
+                        rs.getString(4), rs.getString(5), rs.getBoolean(6), rs.getString(7), rs.getDate(8)));
             }
+            return  list;
         } catch (Exception e) {
         }
         return null;

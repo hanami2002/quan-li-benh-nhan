@@ -105,6 +105,7 @@
                                 </td>
                             </tr>
                         </c:forEach>
+                            
 
                         <!-- Thêm các dòng thông tin bệnh nhân khác tại đây -->
                     </tbody>

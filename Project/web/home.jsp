@@ -129,7 +129,7 @@
             <div >
                 <nav >
                     <ul>
-                        <div class="container">
+                        <div>
                             <li>
                                 <button id="add-patient" type="button" class="btn btn-primary" data-toggle="modal" data-target="#addPatientModal">
                                     Thêm bệnh nhân
@@ -152,6 +152,11 @@
                             <li>
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updateInformation">
                                     Thay đổi thông tin
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addAccountModal">
+                                    Thêm tài khoản
                                 </button>
                             </li>
                             <li>
@@ -203,55 +208,13 @@
                     <!-- Thêm mã HTML sau dòng <table> trong section -->
                     <div class="pagination">
                         <ul class="pagination justify-content-center">
-                            <c:if test="${currentPage==1}">
-                                <div hidden>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Start">
-                                            <span aria-hidden="true">First</span>                
-                                        </a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Previous">
-                                            <span aria-hidden="true">&laquo;</span>
-                                            <span class="sr-only">Previous</span>
-                                        </a>
-                                    </li>
-                                </div>
-                            </c:if>
-                            <c:if test="${currentPage!=1}">
-                                
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Start">
-                                            <span aria-hidden="true">First</span>                
-                                        </a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Previous">
-                                            <span aria-hidden="true">&laquo;</span>
-                                            <span class="sr-only">Previous</span>
-                                        </a>
-                                    </li>
-                                
-                            </c:if>
 
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">4</a></li>
-                            <li class="page-item"><a class="page-link" href="#">5</a></li>
-                            <li class="page-item"><a class="page-link" href="#">6</a></li>
-                            <li class="page-item"><a class="page-link" href="#">7</a></li>
-                            <li class="page-item"><a class="page-link" href="#">8</a></li>
-                            <li class="page-item"><a class="page-link" href="#">9</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </li>
-                            <a class="page-link" href="#" aria-label="Start">
-                                <span aria-hidden="true">End</span>                
-                            </a>
+                            <c:forEach var="s" items="${listS}">
+                                <li class="page-item"><a class="page-link" href="home?pageIndex=${s}">${s}</a></li>
+                                </c:forEach>
+
+
+
                         </ul>
                     </div>
 
@@ -410,30 +373,67 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
+                    </div>                       
+                    <form action="changepass" method="post">
+                        <div class="modal-body">
                             <div class="form-group">
-                                <label for="displayName">Tên hiển thị:</label>
-                                <input type="text" class="form-control" id="displayName" placeholder="Nhập tên hiển thị">
+                                <label for="displayName">Mật khẩu hiện tại:</label>
+                                <input name="old" type="password" class="form-control" id="displayName" placeholder="Nhập mật khẩu hiện tại">
                             </div>
                             <div class="form-group">
-                                <label for="password">Mật khẩu:</label>
-                                <input type="password" class="form-control" id="password" placeholder="Nhập mật khẩu">
+                                <label for="password">Mật khẩu mới:</label>
+                                <input name ="new"type="password" class="form-control" id="password" placeholder="Nhập mật khẩu">
                             </div>
                             <div class="form-group">
                                 <label for="password">Nhập lại mật khẩu:</label>
-                                <input type="password" class="form-control" id="re-password" placeholder="Nhập lại mật khẩu">
+                                <input name="renew" type="password" class="form-control" id="re-password" placeholder="Nhập lại mật khẩu">
                             </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                        <button type="button" class="btn btn-primary" id="saveChangesBtn">Lưu thay đổi</button>
-                    </div>
+
+                            <p id="password-error" style="color: red; display: none;"> Mật khẩu không khớp</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                            <button type="submit" class="btn btn-primary" id="saveChangesBtn">Lưu thay đổi</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="addAccountModal" tabindex="-1" role="dialog" aria-labelledby="addAccountModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addAccountModalLabel">Thêm tài khoản mới</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="addaccount" method="post">
+                    <div class="modal-body">
+                        
+                            <div class="form-group">
+                                <label for="username">Tên đăng nhập:</label>
+                                <input name="username" type="text" class="form-control" id="username" placeholder="Nhập tên đăng nhập">
+                            </div>
+                            <div class="form-group">
+                                <label for="displayName">Tên hiển thị:</label>
+                                <input name="displayname" type="text" class="form-control" id="displayName" placeholder="Nhập tên hiển thị">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Mật khẩu:</label>
+                                <input name="pass" type="password" class="form-control" id="password" placeholder="Nhập mật khẩu">
+                            </div>
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-primary" id="saveAccountBtn">Lưu</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
         <footer>
             <p>&copy; 2023 Bệnh viện XYZ. All rights reserved.</p>
         </footer>
@@ -442,6 +442,17 @@
         <script>
 
                                             $(document).ready(function () {
+                                                $('#re-password').on('input change', function () {
+                                                    var password = $('#password').val();
+                                                    var rePassword = $(this).val();
+                                                    if (password !== rePassword) {
+                                                        $('#password-error').show();
+                                                        $("#saveChangesBtn").prop('disabled', true);
+                                                    } else {
+                                                        $('#password-error').hide();
+                                                        $("#saveChangesBtn").prop('disabled', false);
+                                                    }
+                                                });
                                                 $("#add-patient").click(() => {
                                                     $("#inputName").val("");
                                                     $("#inputDOB").val("");

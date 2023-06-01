@@ -36,23 +36,27 @@ public class HomeController extends HttpServlet {
             throws ServletException, IOException {
         String pageIndex = request.getParameter("pageIndex");
         PaitnetDAO pdao = new PaitnetDAO();
-        int currentPage = 2;
-        Paging paging= new Paging();
+        int currentPage;
+        Paging paging = new Paging();
         ArrayList<String> list = new ArrayList<String>();
-                
-        if (pageIndex == null) {
-            List<Paitnet> listP = pdao.getListPaitnet(1);
-            currentPage = 1;
-            request.setAttribute("currentPage", currentPage);
-            request.setAttribute("listP", listP);
-            request.getRequestDispatcher("home.jsp").forward(request, response);
-        }else{
-            List<Paitnet> listP = pdao.getListPaitnet();
-            request.setAttribute("currentPage", currentPage);
-            request.setAttribute("listP", listP);
-            request.getRequestDispatcher("home.jsp").forward(request, response);
+        List<String> listS = new ArrayList<>();
+        List<Paitnet> listP=null;
+        int totalPage = paging.totalPage;
+        for (int i = 1; i <= totalPage; i++) {
+            listS.add(i + "");
         }
-
+        if (pageIndex == null) {
+             listP = pdao.getListPaitnet(1);
+            currentPage = 1;
+        } else {
+            currentPage = Integer.parseInt(pageIndex);
+             listP = pdao.getListPaitnet(currentPage);            
+        }
+        request.setAttribute("currentPage", currentPage);
+            request.setAttribute("totalPage", totalPage);
+            request.setAttribute("listS", listS);
+            request.setAttribute("listP", listP);
+            request.getRequestDispatcher("home.jsp").forward(request, response);
 
     }
 

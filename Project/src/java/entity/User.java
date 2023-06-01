@@ -15,16 +15,28 @@ public class User {
     private String password;
     private String displayname;
     private Date createAt;
+    private int role;
 
     public User() {
     }
 
-    public User(String username, String password, String displayname, Date createAt) {
+    public User(String username, String password, String displayname, Date createAt, int role) {
         this.username = username;
         this.password = password;
         this.displayname = displayname;
         this.createAt = createAt;
+        this.role = role;
     }
+
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
+    }
+
+    
 
     public String getUsername() {
         return username;
