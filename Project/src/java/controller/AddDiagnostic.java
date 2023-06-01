@@ -29,7 +29,8 @@ public class AddDiagnostic extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String user=request.getParameter("pcreate");
+        try {
+            String user=request.getParameter("pcreate");
         String pid= request.getParameter("pid");
         String symptom= request.getParameter("symptom");
         String diagnosis= request.getParameter("diagnosis");
@@ -48,6 +49,9 @@ public class AddDiagnostic extends HttpServlet {
         DiagnosticDAO dAO= new DiagnosticDAO();
         dAO.addDiagnostic(Integer.parseInt(pid), symptom, diagnosis, medication,check, user);
         response.sendRedirect("list");
+        } catch (Exception e) {
+            response.sendRedirect("fail.jsp");
+        }
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

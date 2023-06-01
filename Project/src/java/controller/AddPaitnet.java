@@ -33,27 +33,32 @@ public class AddPaitnet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String action = request.getParameter("btn");
-        String name = request.getParameter("pname");
-        String dob = request.getParameter("pdob");
-        String address = request.getParameter("paddress");
-        String phone = request.getParameter("pphone");
-        String create = request.getParameter("pcreate");
-        PrintWriter out = response.getWriter();
-        out.print(action);
-        out.println(name + " " + address + " " + dob + " " + phone + " " + create);
-        PaitnetDAO pdao = new PaitnetDAO();
-        if (action.equals("Add")) {
-            pdao.addPaitnet(name, address, dob, phone, create);
-            UserDAO udao= new UserDAO();
-            List<Paitnet> list= pdao.getListPaitnet();
-            udao.addUserPaitnet("paitnet"+list.get(list.size()-1).getId(), name);
+
+        try {
+            String action = request.getParameter("btn");
+            String name = request.getParameter("pname");
+            String dob = request.getParameter("pdob");
+            String address = request.getParameter("paddress");
+            String phone = request.getParameter("pphone");
+            String create = request.getParameter("pcreate");
+            PrintWriter out = response.getWriter();
+            out.print(action);
+            out.println(name + " " + address + " " + dob + " " + phone + " " + create);
+            PaitnetDAO pdao = new PaitnetDAO();
+            if (action.equals("Add")) {
+                pdao.addPaitnet(name, address, dob, phone, create);
+                UserDAO udao = new UserDAO();
+                List<Paitnet> list = pdao.getListPaitnet();
+                udao.addUserPaitnet("paitnet" + list.get(list.size() - 1).getId(), name);
+            }
+            if (action.equals("Edit")) {
+                String pid = request.getParameter("pid");
+                pdao.updatePaitnet(name, address, dob, phone, create, Integer.parseInt(pid));
+            }
+            response.sendRedirect("home");
+        } catch (Exception e) {
+            response.sendRedirect("fail.jsp");
         }
-        if (action.equals("Edit")) {
-            String pid = request.getParameter("pid");
-            pdao.updatePaitnet(name, address, dob, phone, create,Integer.parseInt(pid));
-        }
-        response.sendRedirect("home");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

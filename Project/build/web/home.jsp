@@ -50,6 +50,10 @@
         <c:if test="${sessionScope.user!=null}">
             <style>
                 body {
+                    background-image: url('https://png.pngtree.com/background/20210710/original/pngtree-medical-blue-technology-hospital-banner-background-picture-image_1037868.jpg');
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
                     font-family: Arial, sans-serif;
                     margin: 0;
                     padding: 0;
@@ -293,6 +297,7 @@
                             <div class="form-group">
                                 <label for="inputDOB">Ngày sinh:</label>
                                 <input type="date" name="pdob" class="form-control" id="inputDOB">
+                                <p id="date-error" style="color: red;display: none ">Ngày sinh không hợp lệ</p>
                             </div>
                             <div class="form-group">
                                 <label for="inputAddress">Địa chỉ:</label>
@@ -301,13 +306,14 @@
                             <div class="form-group">
                                 <label for="inputPhone">Số điện thoại:</label>
                                 <input type="tel" name="pphone" class="form-control" id="inputPhone" placeholder="Nhập số điện thoại">
+                                <p id="phone-error" style="color: red; display: none ">Số điện thoại không hợp lệ</p>
                             </div>
 
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                            <button type="submit" name="btn" value="Add" class="btn btn-primary">Thêm</button>
-                            <button type="submit" name="btn" value="Edit" class="btn btn-primary">Sửa</button>
+                            <button type="submit" id="edit-btn" name="btn" value="Add" class="btn btn-primary">Thêm</button>
+                            <button type="submit" id="add-btn"name="btn" value="Edit" class="btn btn-primary">Sửa</button>
                         </div></form>
                 </div>
             </div>
@@ -363,54 +369,54 @@
             </div>
         </div>
         <!-- The modal history -->
-        <div class="modal fade" id="patientHistoryModal" tabindex="-1" role="dialog" aria-labelledby="patientHistoryModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="patientHistoryModalLabel">Lịch sử bệnh nhân</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="searchPatientInput">Tìm kiếm theo tên</label>
-                                <input type="text" class="form-control" id="searchPatientInput" placeholder="Nhập tên bệnh nhân">
+        <!--        <div class="modal fade" id="patientHistoryModal" tabindex="-1" role="dialog" aria-labelledby="patientHistoryModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="patientHistoryModalLabel">Lịch sử bệnh nhân</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
-                        </form>
-                        <div id="patientInfo">
-                            <!-- Tên bệnh nhân và bảng hiển thị các chuẩn đoán sẽ được hiển thị tại đây -->
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="searchPatientInput">Tìm kiếm theo tên</label>
+                                        <input type="text" class="form-control" id="searchPatientInput" placeholder="Nhập tên bệnh nhân">
+                                    </div>
+                                </form>
+                                <div id="patientInfo">
+                                     Tên bệnh nhân và bảng hiển thị các chuẩn đoán sẽ được hiển thị tại đây 
+                                </div>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Ngày</th>
+                                            <th>Triệu chứng</th>
+                                            <th>Chuẩn đoán</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Ngày 1</td>
+                                            <td>Triệu chứng 1</td>
+                                            <td>Chuẩn đoán 1</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ngày 2</td>
+                                            <td>Triệu chứng 2</td>
+                                            <td>Chuẩn đoán 2</td>
+                                        </tr>
+                                         Thêm các hàng dữ liệu chuẩn đoán trước đó tại đây 
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                            </div>
                         </div>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Ngày</th>
-                                    <th>Triệu chứng</th>
-                                    <th>Chuẩn đoán</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Ngày 1</td>
-                                    <td>Triệu chứng 1</td>
-                                    <td>Chuẩn đoán 1</td>
-                                </tr>
-                                <tr>
-                                    <td>Ngày 2</td>
-                                    <td>Triệu chứng 2</td>
-                                    <td>Chuẩn đoán 2</td>
-                                </tr>
-                                <!-- Thêm các hàng dữ liệu chuẩn đoán trước đó tại đây -->
-                            </tbody>
-                        </table>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+                </div>-->
         <!-- Modal -->
         <div class="modal fade" id="updateInformation" tabindex="-1" role="dialog" aria-labelledby="updateInformationLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -513,6 +519,34 @@
     <script>
 
                                             $(document).ready(function () {
+                                                $('#inputPhone').on('input', function () {
+                                                    var phone = $(this).val();
+                                                    var phonePattern = /^\d{10,11}$/;
+
+                                                    if (phonePattern.test(phone)) {
+                                                        $('#phone-error').hide();
+                                                        $('#add-btn').prop('disabled', true);
+                                                        $('#edit-btn-btn').prop('disabled', true);
+                                                    } else {
+                                                        $('#phone-error').show();
+                                                        $('#add-btn').prop('disabled', false);
+                                                        $('#edit-btn-btn').prop('disabled', false);
+                                                    }
+                                                });
+                                                $('#inputDOB').on('change', function () {
+                                                    var inputDate = new Date($(this).val());
+                                                    var currentDate = new Date();
+
+                                                    if (inputDate > currentDate) {
+                                                        $('#date-error').show();
+                                                        $('#add-btn').prop('disabled', true);
+                                                        $('#edit-btn-btn').prop('disabled', true);
+                                                    } else {
+                                                        $('#date-error').hide();
+                                                        $('#add-btn').prop('disabled', false);
+                                                        $('#edit-btn-btn').prop('disabled', false);
+                                                    }
+                                                });
                                                 $('#re-password').on('input change', function () {
                                                     var password = $('#password').val();
                                                     var rePassword = $(this).val();

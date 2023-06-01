@@ -13,13 +13,22 @@
         <c:if test="${sessionScope.user==null}">
             <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
         </c:if>
-         
+
         <c:if test="${sessionScope.user!=null}">
             <jsp:useBean id="dateUtils" scope="page" class="utils.DateExp" />
             <jsp:useBean id="paitnet" scope="page" class="dao.PaitnetDAO" />
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
             <style>
+                body{
+
+                    background-image: url('https://png.pngtree.com/background/20210710/original/pngtree-medical-blue-technology-hospital-banner-background-picture-image_1037868.jpg');
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    height: 100vh;
+                    margin: 0;
+                }
                 .container {
                     margin-top: 20px;
                 }
@@ -70,15 +79,15 @@
                 <a href="home" class="btn btn-primary">Back</a> <!-- Thay đổi đường dẫn 'index.html' thành trang chủ của bạn -->
                 <h2>Lịch sử chuẩn đoán</h2>
                 <form action="search-paitnet" method="post">
-                <div  class="search-form">
-                    <div class="form-group">
-                        <input value="" name="nameSearch" type="text" id="searchName" placeholder="Tên" class="form-control">
+                    <div  class="search-form">
+                        <div class="form-group">
+                            <input value="" name="nameSearch" type="text" id="searchName" placeholder="Tên" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input value="" name="phoneSearch" type="text" id="searchPhone" placeholder="Số điện thoại" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary" >Tìm kiếm</button>
                     </div>
-                    <div class="form-group">
-                        <input value="" name="phoneSearch" type="text" id="searchPhone" placeholder="Số điện thoại" class="form-control">
-                    </div>
-                    <button type="submit" class="btn btn-primary" >Tìm kiếm</button>
-                </div>
                 </form>
                 <table class="table">
                     <thead>
@@ -105,7 +114,7 @@
                                 </td>
                             </tr>
                         </c:forEach>
-                            
+
 
                         <!-- Thêm các dòng thông tin bệnh nhân khác tại đây -->
                     </tbody>
@@ -137,46 +146,47 @@
                 </div>
             </div>
 
+
             <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
             <script>
-                        $(document).ready(function () {
-                            $(".edit-button").click(function () {
-                                const patient = $(this).data("patient");
-                                
-                                // Lấy thông tin bệnh nhân từ thuộc tính data-patient
-                                // var patient = JSON.parse($(this).data("patient"));
-                                // Đẩy thông tin bệnh nhân vào modal "Thêm bệnh nhân"
-                                $("#text-symptom").text("Triệu chứng: " +patient.symptom);
-                                $("#text-diagnosis").text("Chuẩn đoán: " +patient.diagnosis);
-                                $("#text-medicines").text("Thuốc: " +patient.medicines);
-                                $("#text-wardRequired").text("Nằm viện: " +(patient.wardRequired?"có":"không"));
-                                $("#text-symptom").text("Triệu chứng: " +patient.symptom);
-                                $("#text-date").text("Ngày chuẩn đoán: " +dateFormat(patient.createAt));
+                $(document).ready(function () {
+                    $(".edit-button").click(function () {
+                        const patient = $(this).data("patient");
 
-                            });
-                        });
+                        // Lấy thông tin bệnh nhân từ thuộc tính data-patient
+                        // var patient = JSON.parse($(this).data("patient"));
+                        // Đẩy thông tin bệnh nhân vào modal "Thêm bệnh nhân"
+                        $("#text-symptom").text("Triệu chứng: " + patient.symptom);
+                        $("#text-diagnosis").text("Chuẩn đoán: " + patient.diagnosis);
+                        $("#text-medicines").text("Thuốc: " + patient.medicines);
+                        $("#text-wardRequired").text("Nằm viện: " + (patient.wardRequired ? "có" : "không"));
+                        $("#text-symptom").text("Triệu chứng: " + patient.symptom);
+                        $("#text-date").text("Ngày chuẩn đoán: " + dateFormat(patient.createAt));
 
-                        const month = {
-                            "Jan": 1,
-                            "Feb": 2,
-                            "Mar": 3,
-                            "Apr": 4,
-                            "May": 5,
-                            "Jun": 6,
-                            "Jul": 7,
-                            "Aug": 8,
-                            "Sep": 9,
-                            "Oct": 10,
-                            "Nov": 11,
-                            "Dec": 12
-                        };
-                        const dateFormat = (date = "Jan 1, 2020") => {
-                            date = date.replace(",", "").split(" ")
+                    });
+                });
 
-                            return date[2] + "-" + (Number(month[date[0]]) / 10 >= 1 ? month[date[0]] : ("0" + month[date[0]])) + "-" + (Number(date[1]) / 10 >= 1 ? date[1] : ("0" + date[1]));
-                        };                        
+                const month = {
+                    "Jan": 1,
+                    "Feb": 2,
+                    "Mar": 3,
+                    "Apr": 4,
+                    "May": 5,
+                    "Jun": 6,
+                    "Jul": 7,
+                    "Aug": 8,
+                    "Sep": 9,
+                    "Oct": 10,
+                    "Nov": 11,
+                    "Dec": 12
+                };
+                const dateFormat = (date = "Jan 1, 2020") => {
+                    date = date.replace(",", "").split(" ")
+
+                    return date[2] + "-" + (Number(month[date[0]]) / 10 >= 1 ? month[date[0]] : ("0" + month[date[0]])) + "-" + (Number(date[1]) / 10 >= 1 ? date[1] : ("0" + date[1]));
+                };
             </script>
         </c:if>
 

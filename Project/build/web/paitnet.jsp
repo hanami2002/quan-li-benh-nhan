@@ -37,13 +37,25 @@
             </div>
         </c:if>
         <c:if test="${sessionScope.user!=null}">
+            <style>
+                body{
+                    background-image: url('https://png.pngtree.com/background/20210710/original/pngtree-medical-blue-technology-hospital-banner-background-picture-image_1037868.jpg');
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    height: 100vh;
+                    margin: 0;
+
+                }
+            </style>
             <div class="container mt-5">
 
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#userInfoModal">Xem thông tin</button>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#changePasswordModal">Thay đổi mật khẩu</button>
                 <a href="logout"><button type="button" class="btn btn-primary" >Đăng Xuất</button></a>
             </div>
-            <div class="container">
+            <div class="container"style="
+    padding-top: 50px;" >
                 <h1>Lịch sử chuẩn đoán</h1>
                 <table class="table">
                     <thead>
@@ -68,18 +80,18 @@
                                 <c:if test="${!d.isWardRequired()}">
                                     <td>Không</td>
                                 </c:if>
-                                
+
                             </tr> 
                         </c:forEach>
-                            <c:if test="${list==null}">
-                                <tr>
-                                    <td>Trống</td>
-                                    <td>Trống</td>
-                                    <td>Trống</td>
-                                    <td>Trống</td>
-                                    <td>Trống  </td>
-                                </tr>
-                            </c:if>
+                        <c:if test="${list==null}">
+                            <tr>
+                                <td>Trống</td>
+                                <td>Trống</td>
+                                <td>Trống</td>
+                                <td>Trống</td>
+                                <td>Trống  </td>
+                            </tr>
+                        </c:if>
 
                     </tbody>
                 </table>
