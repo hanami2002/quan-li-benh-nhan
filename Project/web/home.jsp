@@ -525,12 +525,12 @@
 
                                                     if (phonePattern.test(phone)) {
                                                         $('#phone-error').hide();
-                                                        $('#add-btn').prop('disabled', true);
-                                                        $('#edit-btn-btn').prop('disabled', true);
+                                                        $("#add-btn").prop('disabled', true);
+                                                        $("#edit-btn").prop('disabled', true);
                                                     } else {
                                                         $('#phone-error').show();
                                                         $('#add-btn').prop('disabled', false);
-                                                        $('#edit-btn-btn').prop('disabled', false);
+                                                        $('#edit-btn').prop('disabled', false);
                                                     }
                                                 });
                                                 $('#inputDOB').on('change', function () {
@@ -540,11 +540,11 @@
                                                     if (inputDate > currentDate) {
                                                         $('#date-error').show();
                                                         $('#add-btn').prop('disabled', true);
-                                                        $('#edit-btn-btn').prop('disabled', true);
+                                                        $('#edit-btn').prop('disabled', true);
                                                     } else {
                                                         $('#date-error').hide();
                                                         $('#add-btn').prop('disabled', false);
-                                                        $('#edit-btn-btn').prop('disabled', false);
+                                                        $('#edit-btn').prop('disabled', false);
                                                     }
                                                 });
                                                 $('#re-password').on('input change', function () {
@@ -559,6 +559,7 @@
                                                     }
                                                 });
                                                 $("#add-patient").click(() => {
+                                                    $('#date-error').hide();
                                                     $("#inputName").val("");
                                                     $("#inputDOB").val("");
                                                     $("#inputAddress").val("");
@@ -568,6 +569,7 @@
                                                 });
                                                 // Xử lý sự kiện nhấn nút "Sửa thông tin"
                                                 $(".edit-button").click(function () {
+                                                    $('#date-error').hide();
                                                     $("button[value='Edit']").show();
                                                     $("button[value='Add']").hide();
                                                     const patient = $(this).data("patient");
