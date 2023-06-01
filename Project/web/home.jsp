@@ -37,6 +37,7 @@
                     color: red;
                     text-decoration: underline;
                 }
+
             </style>
             <div class="w3-display-middle">
                 <h1 class="w3-jumbo w3-animate-top w3-center"><code>Access Denied</code></h1>
@@ -111,9 +112,55 @@
                 }
 
                 footer {
-                    background-color: #f5f5f5;
-                    padding: 20px;
+                    background-color: #333;
+                    color: #fff;
+                    padding: 20px 0;
+                }
+
+                .footer-content {
+                    max-width: 1200px;
+                    margin: 0 auto;
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                }
+
+                .footer-section {
+                    flex: 1;
+                    margin-bottom: 20px;
+                }
+
+                .footer-section h3 {
+                    color: #fff;
+                    font-size: 18px;
+                    margin-bottom: 10px;
+                }
+
+                .footer-section p {
+                    color: #fff;
+                    font-size: 14px;
+                }
+
+                .footer-section.links ul {
+                    list-style: none;
+                    padding: 0;
+                }
+
+                .footer-section.links ul li {
+                    margin-bottom: 10px;
+                }
+
+                .footer-section.links ul li a {
+                    color: #fff;
+                    text-decoration: none;
+                }
+
+                .footer-bottom {
+                    background-color: #222;
+                    padding: 10px 0;
                     text-align: center;
+                    color: #fff;
+                    font-size: 14px;
                 }
 
             </style>
@@ -409,8 +456,8 @@
                         </button>
                     </div>
                     <form action="addaccount" method="post">
-                    <div class="modal-body">
-                        
+                        <div class="modal-body">
+
                             <div class="form-group">
                                 <label for="username">Tên đăng nhập:</label>
                                 <input name="username" type="text" class="form-control" id="username" placeholder="Nhập tên đăng nhập">
@@ -423,23 +470,47 @@
                                 <label for="password">Mật khẩu:</label>
                                 <input name="pass" type="password" class="form-control" id="password" placeholder="Nhập mật khẩu">
                             </div>
-                        
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                        <button type="submit" class="btn btn-primary" id="saveAccountBtn">Lưu</button>
-                    </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                            <button type="submit" class="btn btn-primary" id="saveAccountBtn">Lưu</button>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-        <footer>
-            <p>&copy; 2023 Bệnh viện XYZ. All rights reserved.</p>
-        </footer>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h3>Về chúng tôi</h3>
+                <p>Bệnh viện XYZ cung cấp các dịch vụ y tế chất lượng cao cho cộng đồng.</p>
+            </div>
+            <div class="footer-section contact">
+                <h3>Liên hệ</h3>
+                <p><i class="fa fa-phone"></i> Số điện thoại: 0123456789</p>
+                <p><i class="fa fa-envelope"></i> Email: info@benhvienxyz.com</p>
+            </div>
+            <div class="footer-section links">
+                <h3>Liên kết nhanh</h3>
+                <ul>
+                    <li><a href="#">Trang chủ</a></li>
+                    <li><a href="#">Dịch vụ</a></li>
+                    <li><a href="#">Bác sĩ</a></li>
+                    <li><a href="#">Bệnh nhân</a></li>
+                    <li><a href="#">Tin tức</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
 
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <script>
+            &copy; 2023 Bệnh viện XYZ. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
 
                                             $(document).ready(function () {
                                                 $('#re-password').on('input change', function () {
@@ -499,8 +570,8 @@
                                             console.log(dateFormat("Dec 13, 2002"));
 
 
-        </script>
-    </c:if>
+    </script>
+</c:if>
 
 
 </body>
