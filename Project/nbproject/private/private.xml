@@ -3,10 +3,24 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/FPTShop/OneDrive/Documents/GitHub/quan-li-benh-nhan/Project/src/java/controller/Addaccount.java</file>
-            <file>file:/C:/Users/FPTShop/OneDrive/Documents/GitHub/quan-li-benh-nhan/Project/src/java/controller/AddDiagnostic.java</file>
-            <file>file:/C:/Users/FPTShop/OneDrive/Documents/GitHub/quan-li-benh-nhan/Project/src/java/controller/DeletePaitnent.java</file>
-            <file>file:/C:/Users/FPTShop/OneDrive/Documents/GitHub/quan-li-benh-nhan/Project/src/java/controller/AddPaitnet.java</file>
+            <file>file:/C:/Users/FPTShop/OneDrive/Documents/GitHub/quan-li-benh-nhan/Project/web/fail.jsp</file>
+            <file>file:/C:/Users/FPTShop/OneDrive/Documents/GitHub/quan-li-benh-nhan/Project/web/paitnet.jsp</file>
+            <file>file:/C:/Users/FPTShop/OneDrive/Documents/GitHub/quan-li-benh-nhan/Project/src/java/utils/Paging.java</file>
+            <file>file:/C:/Users/FPTShop/OneDrive/Documents/GitHub/quan-li-benh-nhan/Project/src/java/controller/Logout.java</file>
+            <file>file:/C:/Users/FPTShop/OneDrive/Documents/GitHub/quan-li-benh-nhan/Project/src/java/controller/ListController.java</file>
+            <file>file:/C:/Users/FPTShop/OneDrive/Documents/GitHub/quan-li-benh-nhan/Project/web/list.jsp</file>
+            <file>file:/C:/Users/FPTShop/OneDrive/Documents/GitHub/quan-li-benh-nhan/Project/web/login.jsp</file>
+            <file>file:/C:/Users/FPTShop/OneDrive/Documents/GitHub/quan-li-benh-nhan/Project/web/done.jsp</file>
+            <file>file:/C:/Users/FPTShop/OneDrive/Documents/GitHub/quan-li-benh-nhan/Project/src/java/controller/changepass.java</file>
+            <file>file:/C:/Users/FPTShop/OneDrive/Documents/GitHub/quan-li-benh-nhan/Project/src/java/controller/HomeController.java</file>
+            <file>file:/C:/Users/FPTShop/OneDrive/Documents/GitHub/quan-li-benh-nhan/Project/src/java/controller/PaitnetController.java</file>
+            <file>file:/C:/Users/FPTShop/OneDrive/Documents/GitHub/quan-li-benh-nhan/Project/src/java/utils/DateExp.java</file>
+            <file>file:/C:/Users/FPTShop/OneDrive/Documents/GitHub/quan-li-benh-nhan/Project/web/success.jsp</file>
+            <file>file:/C:/Users/FPTShop/OneDrive/Documents/GitHub/quan-li-benh-nhan/Project/src/java/controller/GetPaitnetById.java</file>
+            <file>file:/C:/Users/FPTShop/OneDrive/Documents/GitHub/quan-li-benh-nhan/Project/src/java/controller/Login.java</file>
+            <file>file:/C:/Users/FPTShop/OneDrive/Documents/GitHub/quan-li-benh-nhan/Project/src/java/controller/SearchPaitnet.java</file>
+            <file>file:/C:/Users/FPTShop/OneDrive/Documents/GitHub/quan-li-benh-nhan/Project/web/failed.jsp</file>
+            <file>file:/C:/Users/FPTShop/OneDrive/Documents/GitHub/quan-li-benh-nhan/Project/web/home.jsp</file>
         </group>
     </open-files>
 </project-private>
