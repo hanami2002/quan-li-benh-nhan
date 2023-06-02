@@ -17,12 +17,17 @@ public class UserDAO extends DBContextMySQL {
     
     PreparedStatement ps = null;
     ResultSet rs = null;
+    // lấy ra user theo username
     public User getUserByUserName(String username){
         String sql="select*from user where username=?";
         try {
+            //tạo kết nối
             ps= connection.prepareStatement(sql);
+            //gán username vào ? đầu tiên
             ps.setString(1, username);
+            //thực thi câu lệnh
             rs=ps.executeQuery();
+            //lấy ra kết quả
             while(rs.next()){
                 return new User(rs.getString(1), rs.getString(2), rs.getString(3), rs.getDate(4),rs.getInt(5));
             }
@@ -32,7 +37,7 @@ public class UserDAO extends DBContextMySQL {
         return null;
     }
     public void addUserPaitnet(String username,String display){
-        String sql="INSERT INTO `prj_qg`.`user`(`username`,`password`,`displayname`,`role`)VALUES(?,'123456',?,1);";
+        String sql="INSERT INTO `prj_qg`.`user`(`username`,`password`,`displayname`,`role`)VALUES(?,'123456',?,0);";
         try {
             ps=connection.prepareStatement(sql);
             ps.setString(1, username);
@@ -64,9 +69,4 @@ public class UserDAO extends DBContextMySQL {
         }
     }
 }
-class te{
-    public static void main(String[] args) {
-        UserDAO udao= new UserDAO();
-        System.out.println(udao.getUserByUserName("user1"));
-    }
-}
+

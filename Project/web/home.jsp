@@ -525,12 +525,12 @@
 
                                                     if (phonePattern.test(phone)) {
                                                         $('#phone-error').hide();
-                                                        $("#add-btn").prop('disabled', true);
-                                                        $("#edit-btn").prop('disabled', true);
-                                                    } else {
-                                                        $('#phone-error').show();
                                                         $('#add-btn').prop('disabled', false);
                                                         $('#edit-btn').prop('disabled', false);
+                                                    } else {
+                                                        $('#phone-error').show();
+                                                        $('#add-btn').prop('disabled', true);
+                                                        $('#edit-btn').prop('disabled', true);
                                                     }
                                                 });
                                                 $('#inputDOB').on('change', function () {
@@ -569,7 +569,7 @@
                                                 });
                                                 // Xử lý sự kiện nhấn nút "Sửa thông tin"
                                                 $(".edit-button").click(function () {
-                                                    $('#date-error').hide();
+                                                    
                                                     $("button[value='Edit']").show();
                                                     $("button[value='Add']").hide();
                                                     const patient = $(this).data("patient");

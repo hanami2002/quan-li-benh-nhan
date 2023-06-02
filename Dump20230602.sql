@@ -36,7 +36,7 @@ CREATE TABLE `diagnostic` (
   KEY `createBy` (`createBy`),
   CONSTRAINT `diagnostic_ibfk_1` FOREIGN KEY (`pid`) REFERENCES `paitnet` (`pid`),
   CONSTRAINT `diagnostic_ibfk_2` FOREIGN KEY (`createBy`) REFERENCES `user` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -57,7 +57,7 @@ CREATE TABLE `paitnet` (
   PRIMARY KEY (`pid`),
   KEY `createBy` (`createBy`),
   CONSTRAINT `paitnet_ibfk_1` FOREIGN KEY (`createBy`) REFERENCES `user` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -86,4 +86,4 @@ CREATE TABLE `user` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-01 20:30:11
+-- Dump completed on 2023-06-02 11:21:04

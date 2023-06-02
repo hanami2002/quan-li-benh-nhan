@@ -116,13 +116,4 @@ public class DiagnosticDAO extends DBContextMySQL {
 
 }
 
-class p {
 
-    public static void main(String[] args) {
-        DiagnosticDAO dAO = new DiagnosticDAO();
-        DateExp dateExp = new DateExp();
-        PaitnetDAO pdao = new PaitnetDAO();
-        System.out.println(dAO.search("c", ""));
-        System.out.println(pdao.countPaitnet());
-    }
-}

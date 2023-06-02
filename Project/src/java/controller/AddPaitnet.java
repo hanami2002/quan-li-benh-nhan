@@ -35,26 +35,29 @@ public class AddPaitnet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         try {
+            //Lấy ra các thuộc tính
             String action = request.getParameter("btn");
             String name = request.getParameter("pname");
             String dob = request.getParameter("pdob");
             String address = request.getParameter("paddress");
             String phone = request.getParameter("pphone");
             String create = request.getParameter("pcreate");
-            PrintWriter out = response.getWriter();
-            out.print(action);
-            out.println(name + " " + address + " " + dob + " " + phone + " " + create);
+
             PaitnetDAO pdao = new PaitnetDAO();
-            if (action.equals("Add")) {
+            //check acction
+            if (action.equals("Add")) {//add thêm bệnh nhân
+                // add vào database
                 pdao.addPaitnet(name, address, dob, phone, create);
                 UserDAO udao = new UserDAO();
                 List<Paitnet> list = pdao.getListPaitnet();
                 udao.addUserPaitnet("paitnet" + list.get(list.size() - 1).getId(), name);
             }
-            if (action.equals("Edit")) {
+            if (action.equals("Edit")) {//edit bệnh nhân
+                //edit thông tin
                 String pid = request.getParameter("pid");
                 pdao.updatePaitnet(name, address, dob, phone, create, Integer.parseInt(pid));
             }
+            //chuyển hướng về trang home
             response.sendRedirect("home");
         } catch (Exception e) {
             response.sendRedirect("fail.jsp");
